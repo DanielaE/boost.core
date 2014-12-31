@@ -39,7 +39,7 @@ struct xstring
           disable_if<is_arithmetic<It> >::type* = 0)
     : data(end-begin) {}
   
-  int data;
+  ptrdiff_t data;
 };
 
 
