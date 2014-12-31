@@ -33,6 +33,10 @@
 # define BOOST_LIGHTWEIGHT_TEST_OSTREAM std::cerr
 #endif
 
+#if defined(_MSC_VER)
+# pragma warning(disable: 4389) // signed/unsigned mismatch
+#endif
+
 namespace boost
 {
 
@@ -47,7 +51,7 @@ struct report_errors_reminder
 
     ~report_errors_reminder()
     {
-        BOOST_ASSERT(called_report_errors_function);  // verify report_errors() was called  
+        BOOST_ASSERT(called_report_errors_function);  // verify report_errors() was called
     }
 };
 
@@ -93,7 +97,7 @@ inline void throw_failed_impl(char const * excep, char const * file, int line, c
 // the dependency we just disable the warnings.
 #if defined(_MSC_VER)
 # pragma warning(push)
-# pragma warning(disable: 4389)
+# pragma warning(disable: 4389 4100)
 #elif defined(__clang__) && defined(__has_warning)
 # if __has_warning("-Wsign-compare")
 #  pragma clang diagnostic push
@@ -424,6 +428,10 @@ inline int report_errors()
 }
 
 } // namespace boost
+
+#if defined(_MSC_VER)
+# pragma warning(default: 4389) // signed/unsigned mismatch
+#endif
 
 #define BOOST_TEST(expr) ((expr)? (void)0: ::boost::detail::test_failed_impl(#expr, __FILE__, __LINE__, BOOST_CURRENT_FUNCTION))
 #define BOOST_TEST_NOT(expr) BOOST_TEST(!(expr))
