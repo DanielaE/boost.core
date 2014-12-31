@@ -69,6 +69,8 @@ int main(int, char*[])
     noexcept_checkable1 noexcept_val1;
     noexcept_checkable2 noexcept_val2;
 
+	(void)val1; (void)val2; (void)noexcept_val1; (void)noexcept_val2;
+	
     BOOST_TEST(!noexcept(static_cast< bool >(val1)));
     // constexpr functions are implicitly noexcept
     BOOST_TEST(noexcept(static_cast< bool >(val2)));
