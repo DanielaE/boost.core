@@ -8,6 +8,11 @@
 // http://www.boost.org/LICENSE_1_0.txt
 //
 
+#ifdef _MSC_VER
+ #pragma warning(disable: 4702) // unreachable code
+ #pragma warning(disable: 4577)	// 'noexcept' used with no exception handling mode specified
+#endif
+
 #include <vector>
 #include <boost/detail/lightweight_test.hpp>
 
