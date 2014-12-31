@@ -30,6 +30,10 @@
 # define BOOST_LIGHTWEIGHT_TEST_OSTREAM std::cerr
 #endif
 
+#if defined(_MSC_VER)
+# pragma warning(disable: 4389) // signed/unsigned mismatch
+#endif
+
 namespace boost
 {
 
@@ -142,6 +146,10 @@ inline int report_errors()
 }
 
 } // namespace boost
+
+#if defined(_MSC_VER)
+# pragma warning(default: 4389) // signed/unsigned mismatch
+#endif
 
 #define BOOST_TEST(expr) ((expr)? (void)0: ::boost::detail::test_failed_impl(#expr, __FILE__, __LINE__, BOOST_CURRENT_FUNCTION))
 
