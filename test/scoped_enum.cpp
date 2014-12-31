@@ -141,6 +141,7 @@ void check_underlying_type()
 {
     // The real check for the type is in the underlying_type trait test.
     namespace_enum2 enum1 = namespace_enum2::value1;
+	(void)enum1;
     BOOST_TEST(sizeof(enum1) == sizeof(unsigned char));
 }
 
