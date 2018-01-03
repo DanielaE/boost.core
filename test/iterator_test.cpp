@@ -8,6 +8,12 @@
 // http://www.boost.org/LICENSE_1_0.txt
 //
 
+// the test triggers a deprecation warnings when compiled with msvc in C++17 mode
+#if defined(_MSVC_LANG) && _MSVC_LANG > 201402
+// warning STL4015: The std::iterator class template (used as a base class to provide typedefs) is deprecated in C++17
+# define _SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING
+#endif
+
 #include <boost/iterator.hpp>
 #include <boost/core/is_same.hpp>
 #include <boost/core/lightweight_test_trait.hpp>
